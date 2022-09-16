@@ -13,6 +13,7 @@ namespace Todo_App.Repository
         public void AddTask(string Title, string Desc) => _toDoList.Add(new(Title, Desc));
 
         public To_Do? GetTask(string guid) => _toDoList.Find(x => x.GUID.ToString() == guid);
+        public List<To_Do> GetallTask() => _toDoList;
         public void EditTask(string guid, string desc, string title, int prio, bool isComp)
         {
             To_Do? todo = GetTask(guid);
@@ -22,5 +23,6 @@ namespace Todo_App.Repository
             todo.IsCompleted = isComp;
         }
         public void DelTask(string guid) => _toDoList.Remove(_toDoList.Find(x => x.GUID.ToString() == guid));
+        public void CompTask(string guid) => GetTask(guid).IsCompleted = true;
     }
 }
