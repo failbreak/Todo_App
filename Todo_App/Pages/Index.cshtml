@@ -3,9 +3,9 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<section class="py-5 text-center container">
+<section class="py-5 text-center container"
     <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
+        <div class="col-lg-6 col-md-8 mx-auto shadow" style="border-bottom:solid; border-bottom-color:rgba(0,0,0,0.4);">
             <h3>Controls</h3>
             <p class="lead text-muted"> Controls for editing, deleting, creating To-does</p>
             <div class="container">
@@ -23,12 +23,30 @@
 
 <div class="container">
     <div class="mb-3 text-center">
-        <div class="card mb-4 shadow" style="width:18rem; box-shadow:black, 10px">
+        <div class="card mb-4 shadow" style="width:18rem; box-shadow:black 10px">
             <div class="card-body">
-                <h5 class="border-bottom card-title text-center"> Yaaa</h5>
-                <p>SOMETEXT THAT IS HERE</p>
-                
-                
+                <h5 class="border-bottom card-title text-center"> To-Do</h5>
+                <ul>
+                    @for (int i = 0; i < 4; i++)
+                    {
+                        <li>@(i+1) lul</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="mb-3 text-center">
+        <div class="card mb-4 shadow" style="width:18rem; box-shadow:black 10px">
+            <div class="card-body">
+                <h5 class="border-bottom card-title text-center"> Complete</h5>
+                <ul>
+                    @for (int i = 0; i < 4; i++)
+                    {
+                        <li>@(i + 1) lul</li>
+                    }
+                </ul>
             </div>
         </div>
     </div>
