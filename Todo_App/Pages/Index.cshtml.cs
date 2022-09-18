@@ -8,7 +8,21 @@ namespace Todo_App.Pages
     public class IndexModel : PageModel
     {
         private readonly ITaskRepo _repo;
+
+        [BindProperty]
         public List<To_Do> ToDoList { get; set; }
+
+        [BindProperty]
+        public string Title { get; set; }
+
+        [BindProperty]
+        public string Desc { get; set; }
+
+        [BindProperty]
+        public DateTime Created { get; set; }
+
+        [BindProperty]
+        public bool IsDone {get; set; }
         public IndexModel(ITaskRepo repo)
         {
             _repo = repo;
@@ -16,11 +30,11 @@ namespace Todo_App.Pages
         }
         public void OnGet()
         {
-            
+            ToDoList = _repo.GetallTask();
         }
         public void OnGetGetTask()
         {
-
+            
         }
     }
 }
