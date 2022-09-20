@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using Todo_App.Model;
 using Todo_App.Repository;
 
@@ -9,32 +12,84 @@ namespace Todo_App.Pages
     {
         private readonly ITaskRepo _repo;
 
-        [BindProperty]
         public List<To_Do> ToDoList { get; set; }
 
-        [BindProperty]
+        [BindProperty, MaxLength(50), Required]
         public string Title { get; set; }
 
-        [BindProperty]
+        [BindProperty, MaxLength(25), Required]
         public string Desc { get; set; }
 
         [BindProperty]
         public DateTime Created { get; set; }
 
+        [BindProperty, Range(0, 2)]
+        public int prio { get; set; }
+
         [BindProperty]
-        public bool IsDone {get; set; }
+        public bool IsDone { get; set; }
+
+        [BindProperty]
+        public Guid GUid { get; set; }
+
+        public bool ErrorTriggered { get; set; }
+        public bool Success { get; set; }
         public IndexModel(ITaskRepo repo)
         {
             _repo = repo;
             ToDoList = repo.GetallTask();
         }
-        public void OnGet()
+
+        public void OnGet(string status)
         {
-            ToDoList = _repo.GetallTask();
+            switch (status)
+            {
+                case "error":
+                    ErrorTriggered = true;
+                    break;
+                default:
+                    Success = true;
+                    break;
+            }
         }
-        public void OnGetGetTask()
+        public IActionResult OnPostAdd()
         {
-            
+
+            GUid = Guid.NewGuid();
+            if (ModelState.IsValid)
+            {
+                _repo.AddTask((To_Do.Priority)prio, Title, Desc);
+                return RedirectToPage();
+            }
+            else
+            {
+                ErrorTriggered = true;
+                return RedirectToPage("Index", new { status = "error" });
+            }
+
+        }
+        public IActionResult OnPostEdit()
+        {
+            if (ModelState.IsValid)
+            {
+                _repo.EditTask(GUid.ToString(), Desc, Title, prio, IsDone);
+                return RedirectToPage("index", new { status = "success" });
+            }
+            else
+            {
+                ErrorTriggered = true;
+                return RedirectToPage("Index", new { status = "error" });
+            }
+        }
+        public IActionResult OnPostComp()
+        {
+            _repo.CompTask(GUid.ToString());
+            return RedirectToPage();
+        }
+        public IActionResult OnPostDelete()
+        {
+            _repo.DelTask(GUid.ToString());
+            return RedirectToPage();
         }
     }
 }

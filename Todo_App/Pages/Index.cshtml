@@ -3,51 +3,214 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<section class="py-5 text-center container"
+
+<section class="py-5 text-center container">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto shadow" style="border-bottom:solid; border-bottom-color:rgba(0,0,0,0.4);">
-            <h3>Controls</h3>
-            <p class="lead text-muted"> Controls for editing, deleting, creating To-does</p>
+            <h3>Control panel</h3>
+            <br />
             <div class="container">
                 <div class="col">
-            <p class=" btn btn-primary  ">New</p>
-            <p class=" btn btn-primary  ">Delete</p>
-            <p class="btn btn-dark  ">Edit</p>
-            <p class=" btn btn-dark  ">Complete</p>
+                    @*<button class=" btn btn-primary" value="New" />*@
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalNew">New</button>
+                    <button type="button" class="btn btn-dark" data-bs-toggle="collapse" data-bs-target="#Completed" aria-expanded="false" aria-controls="Completed">Completed</button>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-
-<div class="container">
-    <div class="mb-3 text-center">
-        <div class="card mb-4 shadow" style="width:18rem; box-shadow:black 10px">
-            <div class="card-body">
-                <h5 class="border-bottom card-title text-center"> To-Do</h5>
-                <ul>
-                    @for (int i = 0; i < 4; i++)
-                    {
-                        <li>@(i+1) lul</li>
-                    }
-                </ul>
+<div class="modal fade" id="ModalNew" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="NewTaskLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="NewTaskLabel">Add Task</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form method="post" asp-page-handler="Add">
+                <div class="modal-body">
+                    <div class="container gap-1">
+
+                        <div class="flex-row">
+                            <span class="form-label" asp-validation-for="Title">Title</span>
+                            <input class="form-control" asp-for="Title" />
+                        </div>
+
+                        <div class="flex-row">
+                            <span class="form-label" asp-validation-for="Desc">Desc</span>
+                            <input class="form-control" asp-for="Desc" />
+                        </div>
+@*                        <div class="flex-row">
+                            <span class="form-check-label" asp-validation-for="IsDone">complete</span>
+                            <input class="form-check-input" asp-for="IsDone" />
+                        </div>*@
+                        <div class="flex-row">
+                            <span class="form-label" asp-validation-for="prio">Prioroty</span>
+                            <select class="form-select" asp-for="prio">
+                                <option value="0">low</option>
+                                <option selected value="1">normal</option>
+                                <option value="2">high</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="mb-3 text-center">
-        <div class="card mb-4 shadow" style="width:18rem; box-shadow:black 10px">
-            <div class="card-body">
-                <h5 class="border-bottom card-title text-center"> Complete</h5>
-                <ul>
-                    @for (int i = 0; i < 4; i++)
-                    {
-                        <li>@(i + 1) lul</li>
-                    }
-                </ul>
-            </div>
+
+<div class="text-center container d-flex gap-4 justify-content-center">
+    <div class="mb-3 text-center col-6">
+        <h3 class="border-bottom">To-do</h3>
+        <div class="d-flex justify-content-center">
+            @foreach (var todo in Model.ToDoList)
+            {
+                if (!todo.IsCompleted == true)
+                {
+                    <div class="card col-7 mb-4 shadow" style=" box-shadow:black 10px">
+                        <br />
+                        <div class="card-body">
+
+                            <h5 class="border-bottom card-title text-center">@todo.TaskTitle</h5>
+                            <p>@todo.TaskDescription</p>
+                            <p>@todo.TaskPriority</p>
+                            <footer>@todo.Created</footer>
+                            <div class="modal-footer d-flex justify-content-center align-content-center flex-row">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalEdit">Edit</button>
+                                <form method="post" asp-page-handler="Delete">
+                                    <input asp-for="GUid" type="hidden" value="@todo.GUID" />
+                                    <button class="btn btn-primary" type="submit">Delete</button>
+                                </form>
+                                <form method="post" asp-page-handler="Comp">
+                                    <input asp-for="GUid" type="hidden" value="@todo.GUID" />
+                                    <button class="btn btn-primary" type="submit">Complete</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="ModalEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="EditTaskLabel" aria-hidden="true">
+
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="EditTaskLabel">Task Edit</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form method="post" asp-page-handler="Edit">
+                                        <div class="modal-body">
+                                            <div class="container gap-2">
+
+                                                <input asp-for="GUid" type="hidden" value="@todo.GUID" />
+                                                <div class="flex-row">
+                                                    <span class="form-label" asp-validation-for="Title">Title</span>
+                                                    <input class="form-control" asp-for="Title" value="@todo.TaskTitle" />
+                                                </div>
+
+                                                <div class="flex-row">
+                                                    <span class="form-label" asp-validation-for="Desc">Desc</span>
+                                                    <input class="form-control" asp-for="Desc" value="@todo.TaskDescription" />
+                                                </div>
+                                                <div class="flex-row">
+                                                    <span class="form-check-label" asp-validation-for="IsDone">complete</span>
+                                                    <input class="form-check-input" asp-for="IsDone" type="checkbox" />
+                                                </div>
+                                                <div class="flex-row">
+                                                    <span class="form-label" asp-validation-for="prio">Prioroty</span>
+                                                    <select class="form-select" asp-for="prio">
+                                                        <option value="0">low</option>
+                                                        <option selected value="1">normal</option>
+                                                        <option value="2">high</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="border-bottom"></span>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div id="Completed" class="collapse mb-3 text-center col-6">
+        <h3 class="border-bottom">Completed</h3>
+        <div class="d-flex justify-content-center">
+            @foreach (var todo in Model.ToDoList)
+            {
+                if (todo.IsCompleted == true)
+                {
+                    <div class="col-7 card mb-4 shadow" style="box-shadow:black 10px">
+                        <br />
+                        <div class=" card-body">
+                            <h5 class="border-bottom card-title text-center">@todo.TaskTitle</h5>
+                            <p>@todo.TaskDescription</p>
+                            <p>@todo.TaskPriority</p>
+                            <footer>@todo.Created</footer>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalEdit">Edit</button>
+                                <form method="post" asp-page-handler="Delete">
+                                    <input asp-for="GUid" type="hidden" value="@todo.GUID" />
+                                    <button class="btn btn-primary" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="ModalEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="EditTaskLabel" aria-hidden="true">
+
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="EditTaskLabel">Task Edit</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form method="post" asp-page-handler="Edit">
+                                        <div class="modal-body">
+                                            <div class="container gap-2">
+
+                                                <input asp-for="GUid" type="hidden" value="@todo.GUID" />
+                                                <div class="flex-row">
+                                                    <span class="form-label" asp-validation-for="Title">Title</span>
+                                                    <input class="form-control" asp-for="Title" value="@todo.TaskTitle" />
+                                                </div>
+
+                                                <div class="flex-row">
+                                                    <span class="form-label" asp-validation-for="Desc">Desc</span>
+                                                    <input class="form-contr" asp-for="Desc" value="@todo.TaskDescription" />
+                                                </div>
+                                                <div class="flex-row">
+                                                    <span class="form-check-label" asp-validation-for="IsDone">complete</span>
+                                                    <input class="form-check-input" type="checkbox" checked asp-for="IsDone" />
+                                                </div>
+                                                <div class="flex-row">
+                                                    <span class="form-label" asp-validation-for="prio">Prioroty</span>
+                                                    <select class="form-select" asp-for="prio">
+                                                        <option value="0">low</option>
+                                                        <option value="1" selected>normal</option>
+                                                        <option value="2">high</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="border-bottom"> </span>
+                    </div>
+                }
+            }
         </div>
     </div>
 </div>
