@@ -41,7 +41,7 @@ To-does
 
 ## Tags
 
-* [v.1,0,2](https://github.com/failbreak/Todo_App/releases/tag/V1.0.2)
+* [v.1.0.2](https://github.com/failbreak/Todo_App/releases/tag/V1.0.2)
 * [v1.0.1](https://github.com/failbreak/Todo_App/releases/tag/V1.0.1)
 * [v1](https://github.com/failbreak/Todo_App/tree/V1.0)
 * [v.0.1.0](https://github.com/failbreak/Todo_App/tree/V0.1.0)
