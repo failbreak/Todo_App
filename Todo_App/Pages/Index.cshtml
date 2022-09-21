@@ -29,14 +29,14 @@
             </div>
             <form method="post" asp-page-handler="Add">
                 <div class="modal-body">
-                    <div class="container gap-1">
+                    <div class="container m-3">
 
-                        <div class="flex-row">
+                        <div class="mb-2">
                             <span class="form-label" asp-validation-for="Title">Title</span>
                             <input class="form-control" asp-for="Title" />
                         </div>
 
-                        <div class="flex-row">
+                        <div class="mb-2">
                             <span class="form-label" asp-validation-for="Desc">Desc</span>
                             <input class="form-control" asp-for="Desc" />
                         </div>
@@ -44,8 +44,8 @@
                             <span class="form-check-label" asp-validation-for="IsDone">complete</span>
                             <input class="form-check-input" asp-for="IsDone" />
                         </div>*@
-                        <div class="flex-row">
-                            <span class="form-label" asp-validation-for="prio">Prioroty</span>
+                        <div class="mb-2">
+                            <span class="form-label" asp-validation-for="prio">Priority</span>
                             <select class="form-select" asp-for="prio">
                                 <option value="0">low</option>
                                 <option selected value="1">normal</option>
@@ -63,9 +63,9 @@
     </div>
 </div>
 
-<div class="text-center container d-flex gap-4 justify-content-center">
-    <div class="mb-3 text-center col-6">
-        <h3 class="border-bottom">To-do</h3>
+<div class="container d-flex gap-4 justify-content-center">
+    <div class="mb-3 col-6">
+        <h3 class="text-center border-bottom">To-do</h3>
         <div class="d-flex justify-content-center">
             @foreach (var todo in Model.ToDoList)
             {
@@ -75,9 +75,9 @@
                         <br />
                         <div class="card-body">
 
-                            <h5 class="border-bottom card-title text-center">@todo.TaskTitle</h5>
-                            <p>@todo.TaskDescription</p>
-                            <p>@todo.TaskPriority</p>
+                            <h4 class="border-bottom card-title text-center">@todo.TaskTitle</h4>
+                            <p class="text-center border-bottom">@todo.TaskDescription</p>
+                            <p class="text-center">@todo.TaskPriority</p>
                             <footer>@todo.Created</footer>
                             <div class="modal-footer d-flex justify-content-center align-content-center flex-row">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalEdit">Edit</button>
@@ -92,7 +92,6 @@
                             </div>
                         </div>
                         <div class="modal fade" id="ModalEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="EditTaskLabel" aria-hidden="true">
-
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -101,24 +100,23 @@
                                     </div>
                                     <form method="post" asp-page-handler="Edit">
                                         <div class="modal-body">
-                                            <div class="container gap-2">
+                                            <div class="container mb-3">
 
-                                                <input asp-for="GUid" type="hidden" value="@todo.GUID" />
-                                                <div class="flex-row">
+                                                <div class="flex-row mb-2">
                                                     <span class="form-label" asp-validation-for="Title">Title</span>
                                                     <input class="form-control" asp-for="Title" value="@todo.TaskTitle" />
                                                 </div>
 
-                                                <div class="flex-row">
+                                                <div class="flex-row mb-2">
                                                     <span class="form-label" asp-validation-for="Desc">Desc</span>
                                                     <input class="form-control" asp-for="Desc" value="@todo.TaskDescription" />
                                                 </div>
-                                                <div class="flex-row">
+                                                <div class="flex-row mb-2">
                                                     <span class="form-check-label" asp-validation-for="IsDone">complete</span>
                                                     <input class="form-check-input" asp-for="IsDone" type="checkbox" />
                                                 </div>
-                                                <div class="flex-row">
-                                                    <span class="form-label" asp-validation-for="prio">Prioroty</span>
+                                                <div class="flex-row mb-2">
+                                                    <span class="form-label" asp-validation-for="prio">Priority</span>
                                                     <select class="form-select" asp-for="prio">
                                                         <option value="0">low</option>
                                                         <option selected value="1">normal</option>
@@ -127,6 +125,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                                <input asp-for="GUid" type="hidden" value="@todo.GUID" />
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -141,8 +140,8 @@
             }
         </div>
     </div>
-    <div id="Completed" class="collapse mb-3 text-center col-6">
-        <h3 class="border-bottom">Completed</h3>
+    <div id="Completed" class="collapse mb-3 col-6">
+        <h3 class="text-center border-bottom">Completed</h3>
         <div class="d-flex justify-content-center">
             @foreach (var todo in Model.ToDoList)
             {
@@ -151,9 +150,9 @@
                     <div class="col-7 card mb-4 shadow" style="box-shadow:black 10px">
                         <br />
                         <div class=" card-body">
-                            <h5 class="border-bottom card-title text-center">@todo.TaskTitle</h5>
-                            <p>@todo.TaskDescription</p>
-                            <p>@todo.TaskPriority</p>
+                            <h4 class="border-bottom card-title text-center">@todo.TaskTitle</h4>
+                            <p class="text-center border-bottom">@todo.TaskDescription</p>
+                            <p class="text-center">@todo.TaskPriority</p>
                             <footer>@todo.Created</footer>
                             <div class="modal-footer d-flex justify-content-center">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalEdit">Edit</button>
@@ -173,24 +172,24 @@
                                     </div>
                                     <form method="post" asp-page-handler="Edit">
                                         <div class="modal-body">
-                                            <div class="container gap-2">
+                                            <div class="container mb-3">
 
                                                 <input asp-for="GUid" type="hidden" value="@todo.GUID" />
-                                                <div class="flex-row">
+                                                <div class="flex-row mb-2">
                                                     <span class="form-label" asp-validation-for="Title">Title</span>
                                                     <input class="form-control" asp-for="Title" value="@todo.TaskTitle" />
                                                 </div>
 
-                                                <div class="flex-row">
+                                                <div class="flex-row mb-2">
                                                     <span class="form-label" asp-validation-for="Desc">Desc</span>
-                                                    <input class="form-contr" asp-for="Desc" value="@todo.TaskDescription" />
+                                                    <input class="form-control" asp-for="Desc" value="@todo.TaskDescription" />
                                                 </div>
-                                                <div class="flex-row">
+                                                <div class="flex-row mb-2">
                                                     <span class="form-check-label" asp-validation-for="IsDone">complete</span>
                                                     <input class="form-check-input" type="checkbox" checked asp-for="IsDone" />
                                                 </div>
-                                                <div class="flex-row">
-                                                    <span class="form-label" asp-validation-for="prio">Prioroty</span>
+                                                <div class="flex-row mb-2">
+                                                    <span class="form-label" asp-validation-for="prio">Priority</span>
                                                     <select class="form-select" asp-for="prio">
                                                         <option value="0">low</option>
                                                         <option value="1" selected>normal</option>
