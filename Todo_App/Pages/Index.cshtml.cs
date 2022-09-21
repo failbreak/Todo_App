@@ -91,5 +91,11 @@ namespace Todo_App.Pages
             _repo.DelTask(GUid.ToString());
             return RedirectToPage();
         }
+
+        public IActionResult OnPostDelAll()
+        {
+            _repo.DelAll();
+            return RedirectToPage();
+        }
     }
 }

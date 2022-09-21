@@ -62,5 +62,9 @@ namespace Todo_App.Repository
         /// </summary>
         /// <param name="guid"></param>
         public void CompTask(string guid) => GetTask(guid).IsCompleted = true;
+        /// <summary>
+        /// deletes all tasks
+        /// </summary>
+        public void DelAll() => _toDoList.RemoveAll(x => x.IsCompleted);
     }
 }

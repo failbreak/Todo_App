@@ -6,6 +6,7 @@ namespace Todo_App.Repository
     {
         void AddTask(To_Do.Priority priot, string Title, string Desc);
         void CompTask(string guid);
+        void DelAll();
         void DelTask(string guid);
         void EditTask(string guid, string desc, string title, int prio, bool isComp);
         List<To_Do> GetallTask();
