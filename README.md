@@ -1,5 +1,6 @@
 # Todo_app
-![image](https://user-images.githubusercontent.com/69219123/191427232-02662ce4-3cd7-41e1-84b9-d548e32c37db.png)
+![image](https://user-images.githubusercontent.com/69219123/191439806-a45f4ed1-7f3f-4ea7-9e00-a99e5c6881e4.png)
+
 
 
 
@@ -24,8 +25,10 @@ I dette projekt skal jeg lave en Razor Pages applikation, der kan oprette, præs
 ControlPanel:
 * New: Skriv titel, Beskrivelse, sæt en prioritet.
 * Completed: viser færdige to-does
+* Delete all completed: sletter alle færdige to-does
 
-![image](https://user-images.githubusercontent.com/69219123/191435449-646a8e7a-4246-497c-b735-acf54de262ab.png)
+![image](https://user-images.githubusercontent.com/69219123/191439924-6bf91592-9e5d-44c3-8969-20c77c6c3093.png)
+
 
 
 To-does
@@ -38,6 +41,7 @@ To-does
 
 ## Tags
 
+* [v.1,0,2](https://github.com/failbreak/Todo_App/releases/tag/V1.0.2)
 * [v1.0.1](https://github.com/failbreak/Todo_App/releases/tag/V1.0.1)
 * [v1](https://github.com/failbreak/Todo_App/tree/V1.0)
 * [v.0.1.0](https://github.com/failbreak/Todo_App/tree/V0.1.0)
