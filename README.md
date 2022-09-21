@@ -20,6 +20,18 @@
 I dette projekt skal jeg lave en Razor Pages applikation, der kan oprette, præsentere, redigere og slette Todo opgaver.
 
 
+## Instructions
+
+ControlPanel:
+New: Skriv titel, Beskrivelse, sæt en prioritet.
+Completed: viser færdige to-does
+
+
+To-does
+Delete: Sletter stuff.
+Edit: Ændre todoes samme regler som new.
+Complete: Færdigøre to-do status.
+
 
 
 
@@ -29,6 +41,8 @@ I dette projekt skal jeg lave en Razor Pages applikation, der kan oprette, præs
 * [v.0.1.0](https://github.com/failbreak/Todo_App/tree/V0.1.0)
 * [v.0.0.2](https://github.com/failbreak/Todo_App/tree/V0.0.2)
 * [v.0.0.1](https://github.com/failbreak/Todo_App/tree/V0.0.1)
+
+
 ## Changelog
 [Github](https://github.com/failbreak/Todo_App/commit) - Her er mine commits de beskriver meget af hvad der er sket i det løb af development
 
