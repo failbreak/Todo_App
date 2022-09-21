@@ -6,7 +6,6 @@
 ## Table of content
 * [Intro](#Intro)
 * [Instructions](#Instructions)
-* [Krav](#Krav)
 * [Tags](#Tags)
 * [Changelog](#Changelog)
 * [To-do](#To-do)
