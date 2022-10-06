@@ -9,14 +9,16 @@
         public enum Priority { Low, Normal, High }
         public Priority TaskPriority { get; set; }
         public bool IsCompleted { get; set; }
-        public To_Do(Priority priority, string tasktitle, string description)
+        public To_Do(Priority priority, string tasktitle, string description, DateTime Create)
         {
             TaskTitle = tasktitle;
             TaskDescription = description;
-            Created = DateTime.Now;
+            Created = Create;
             GUID = Guid.NewGuid();
             TaskPriority = priority;
             IsCompleted = false;
         }
+
+        public To_Do() { }
     }
 }

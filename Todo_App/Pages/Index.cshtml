@@ -11,7 +11,7 @@
             <br />
             <div class="container">
                 <div class="col">
-                    @*<button class=" btn btn-primary" value="New" />*@
+                    
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalNew">New</button>
                     <button type="button" class="btn btn-dark" data-bs-toggle="collapse" data-bs-target="#Completed" aria-expanded="false" aria-controls="Completed">Completed</button>
                     <form method="post" asp-page-handler="DelAll">
@@ -43,10 +43,7 @@
                             <span class="form-label" asp-validation-for="Desc">Desc</span>
                             <input class="form-control" asp-for="Desc" />
                         </div>
-@*                        <div class="flex-row">
-                            <span class="form-check-label" asp-validation-for="IsDone">complete</span>
-                            <input class="form-check-input" asp-for="IsDone" />
-                        </div>*@
+                        
                         <div class="mb-2">
                             <span class="form-label" asp-validation-for="prio">Priority</span>
                             <select class="form-select" asp-for="prio">
@@ -128,7 +125,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                                <input asp-for="GUid" type="hidden" value="@todo.GUID" />
+                                        <input asp-for="GUid" type="hidden" value="@todo.GUID" />
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

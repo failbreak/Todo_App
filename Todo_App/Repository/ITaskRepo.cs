@@ -4,7 +4,7 @@ namespace Todo_App.Repository
 {
     public interface ITaskRepo
     {
-        void AddTask(To_Do.Priority priot, string Title, string Desc);
+        void AddTask(To_Do.Priority priot, string Title, string Desc, DateTime Create);
         void CompTask(string guid);
         void DelAll();
         void DelTask(string guid);

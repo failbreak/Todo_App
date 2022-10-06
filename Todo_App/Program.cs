@@ -1,9 +1,15 @@
+using Microsoft.Extensions.Configuration;
+using System.Data.Common;
 using Todo_App.Repository;
+using Volo.Abp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
-builder.Services.AddRazorPages().Services.AddSingleton<ITaskRepo, TaskRepo>();
+builder.Services.AddRazorPages().Services.AddSingleton<ITaskRepo, TaskRepo>().AddMvc();
+
+//).AddMvc().AddRazorPagesOptions(options => {
+//      options.RootDirectory = "/Privacy",{ ""};
+//  });
 
 
 var app = builder.Build();

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel;
+using Microsoft.Extensions.Configuration;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
+using System.Configuration;
 using Todo_App.Model;
 using Todo_App.Repository;
 
@@ -10,6 +10,9 @@ namespace Todo_App.Pages
 {
     public class IndexModel : PageModel
     {
+
+       
+
         private readonly ITaskRepo _repo;
 
         public List<To_Do> ToDoList { get; set; }
@@ -42,6 +45,7 @@ namespace Todo_App.Pages
 
         public void OnGet(string status)
         {
+           
             switch (status)
             {
                 case "error":
@@ -58,7 +62,7 @@ namespace Todo_App.Pages
             GUid = Guid.NewGuid();
             if (ModelState.IsValid)
             {
-                _repo.AddTask((To_Do.Priority)prio, Title, Desc);
+                _repo.AddTask((To_Do.Priority)prio, Title, Desc, Created);
                 return RedirectToPage();
             }
             else
