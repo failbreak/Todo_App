@@ -76,8 +76,8 @@ namespace Todo_App.Dal
             _cmd.Parameters.AddWithValue("@TodoGuid", doto.GUID);
             _cmd.Parameters.AddWithValue("@TodoName", doto.TaskTitle);
             _cmd.Parameters.AddWithValue("@TodoDescript", doto.TaskDescription);
-            _cmd.Parameters.AddWithValue("@TodoGuid", doto.TaskPriority);
             _cmd.Parameters.AddWithValue("@IsCompleted", doto.IsCompleted);
+            _cmd.Parameters.AddWithValue("@PrioId", (int)doto.TaskPriority + 1);
             _cmd.ExecuteNonQuery();
             _conn.Close();
             return doto;
