@@ -31,6 +31,10 @@ Delete: Sletter stuff.
 Edit: Ændre todoes samme regler som new.
 Complete: Færdigøre to-do status.
 
+## Database Diagram
+
+![image](https://user-images.githubusercontent.com/69219123/194480078-df76c067-6a3e-4daa-a1eb-47635dd2d6dd.png)
+
 
 
 
