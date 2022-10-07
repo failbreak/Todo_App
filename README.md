@@ -7,7 +7,7 @@
 ## Table of content
 * [Intro](#Intro)
 * [Instructions](#Instructions)
-* [Database Diagram](#Database Diagram)
+* [Database Diagram](#DatabaseDiagram)
 * [Tags](#Tags)
 * [Changelog](#Changelog)
 * [To-do](#To-do)
