@@ -80,7 +80,5 @@ namespace Todo_App.Repository
         public void DelAll() => _toDoList.RemoveAll(x => _Data.DelAllTodo(x).IsCompleted);
         #endregion
 
-
-
     }
 }

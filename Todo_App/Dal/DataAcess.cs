@@ -101,6 +101,50 @@ namespace Todo_App.Dal
             _conn.Close();
             return doto;
         }
+
+        //public Users Login(Users us)
+        //{
+        //    List<Users> userList = new();
+        //    _cmd = new SqlCommand("TodoLogin", _conn) { CommandType = CommandType.StoredProcedure };
+        //    _conn.Open();
+        //    _cmd.Parameters.AddWithValue("@username", us.Username);
+        //    _cmd.Parameters.AddWithValue("@Password", us.Password);
+        //    _reader = _cmd.ExecuteReader();
+        //    while (_reader.Read())
+        //    {
+        //        Users user = new Users()
+        //        {
+        //            Username = _reader.GetString("Username"),
+        //            Password = _reader.GetString("Userpass"),
+        //            Firstname = _reader.GetString("Firstname"),
+        //            Lastname = _reader.GetString("Lastname")
+        //        };
+        //        userList.Add(user);
+        //    }
+             
+        //    _conn.Close();
+        //    return us;
+        //}
+        public List<Users> GetUsers()
+        {
+            List<Users> users = new List<Users>();
+            _cmd = new SqlCommand("GetUsers", _conn) { CommandType = CommandType.StoredProcedure };
+            _conn.Open();
+            _reader = _cmd.ExecuteReader();
+            while (_reader.Read())
+            {
+                Users user = new Users()
+                {
+                    Username = _reader.GetString("Username"),
+                    Password = _reader.GetString("Userpass"),
+                    Firstname = _reader.GetString("Firstname"),
+                    Lastname = _reader.GetString("Lastname")
+                };
+                users.Add(user);
+            }
+                _conn.Close();
+                return users;
+        }
     }
 
 
