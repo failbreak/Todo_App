@@ -7,6 +7,7 @@
 ## Table of content
 * [Intro](#Intro)
 * [Instructions](#Instructions)
+* [Database Diagram](#Database Diagram)
 * [Tags](#Tags)
 * [Changelog](#Changelog)
 * [To-do](#To-do)
@@ -37,6 +38,11 @@ To-does
 * Complete: Færdigøre to-do status.
 
 ![image](https://user-images.githubusercontent.com/69219123/191435383-568239dd-b0d6-4c52-9580-c54e7c5220cf.png)
+
+
+## Database Diagram
+![image](https://user-images.githubusercontent.com/69219123/194480162-c9bcdac3-d0f7-4171-9ca6-71ae667853ce.png)
+
 
 
 ## Tags
